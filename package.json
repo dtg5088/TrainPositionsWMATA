@@ -1,31 +1,36 @@
 {
   "name": "wmatatrainpositions",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
-  },
+  "version": "1.0.0",
+  "description": "WMATA API that finds the position and information of train cars on the designated lines",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run client\"",
+    "seed": "node scripts/seedDB.js",
+    "client": "cd client && npm run start"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtg5088/TrainPositionsWMATA.git"
+  },
+  "author": "Devan Gillaird",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dtg5088/TrainPositionsWMATA/issues"
+  },
+  "homepage": "https://github.com/dtg5088/TrainPositionsWMATA#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.6.2",
+    "path": "^0.12.7",
+    "react-router-dom": "^5.0.1"
   }
 }
