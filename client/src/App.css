@@ -1,55 +1,63 @@
 
-
-.pageBody {
-  background-color: rgb(37, 37, 37);
-  width: 80%;
-  margin:auto;
-  margin-bottom:30px;
-  height: 1800px;
-  border-radius: 8px;
-  opacity: 0.97;
- 
-}
-
 body {
   background: url(http://blogs.nottingham.ac.uk/newsroom/files/2016/08/iStock_82075123_MEDIUM.jpg) no-repeat fixed;
   width: 100%;
   background-size: 100% 100%;
+}
+
+.App{
+  overflow: block;
+}
+.pageBody {
+  background-color: rgb(37, 37, 37);
+  width: 80%;
+  margin:auto;
+  margin-bottom:300px;
+  height: 1800px;
+  border-radius: 8px;
+  opacity: 0.97;
   
 }
 
 .navbar{
+  position: -webkit-sticky; /* Required for Safari */
+  position: sticky;
+  top:0;
   color: aliceblue;
   font-family: 'Playfair Display SC', serif;
   width: 100%;
+  height: auto;
   background-color: #282c34;
   padding: 10px;
+  z-index: 1;
 }
 
 .headerSec {
-  
   position: -webkit-sticky; /* Required for Safari */
   position: sticky;
   padding-top: 10px;
   padding-bottom: 10px;
-  top: 0;
+  top: 65px;
   width: 80%;
   margin: 18px auto 0px auto;
   z-index: 1;
   background-color: #8f939c;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
   
 }
 
 .metroImg {
   width: 100%;
   height: auto;
-  margin: 10px auto 5px auto;
-
+  margin: 10px auto 50px auto;
 }
 
 .metroImgmap{
   width: 100%;
+  height: auto
 }
+
 
 @media only screen and (max-width: 667px) {
 
