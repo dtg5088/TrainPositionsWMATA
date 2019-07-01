@@ -2,102 +2,47 @@ import React, { Component } from 'react';
 import NavBar from './Components/NavBar/navBar';
 import './App.css';
 import axios from 'axios';
-import $ from 'jquery';
+import $ from 'jquery'; //using for params
 import { List, ListItem } from "./Components/List";
 const keyNum = "ce20d76cbeb544a88ae10aac2f037388";
-const API_URL = "https://api.wmata.com/TrainPositions/TrainPositions?contentType={contentType}";
-//import API from "../utils/API";
+
 
 class About extends Component {
 
-    constructor(props) {
-        super(props);
-    
-        // for (let i = 0; i < 10; i++) {
-        //     trains.push({
-        //         name: chance.first(),
-        //         country: chance.country({ full: true })
-        //     });
-        // }
-    
-        this.state = { 
-            trains:[]
-         };
-    }
-
-    //   componentDidMount() {
-    //     var params = {
-    //         "api_key": keyNum,
-    //         // Request parameters
-    //     };
-
-    //     axios.get("https://api.wmata.com/TrainPositions/TrainPositions?contentType={contentType}&" + $.param(params),)
-    //     .then((response) => {
-    //         // handle success
-    //         console.log("Number of trains: "+response.data.TrainPositions.length);
-    //         const trainLength = response.data.TrainPositions.length;
-    //         const trains = response.data.TrainPositions;
-    //         console.log (trains)
-
-    //         for(var i = 0; i<trainLength; i++){
-                
-    //         }
-
-    //         this.setState = ({
-    //             trains: trains
-    //         })
-
-    //     })
-    //     .catch(function (error) {
-    //         // handle error
-    //         console.log(error);
-    //     })
-    //     .finally(function () {
-    //         // always executed
-    //     });
-    //      }
+    state = { 
+        trains:[]
+     };
 
     componentDidMount() {
         this.getTrains();
     }
 
+    async getTrains(){
+        try {
+            //using setInterval to update page every 7 to 10 seconds
+            setInterval(async () => {
+                var params = {
+                    "api_key": keyNum,
+                };
 
-    getTrains(){
-        var params = {
-            "api_key": keyNum,
-            // Request parameters
-        };
-
-        axios.get("https://api.wmata.com/TrainPositions/TrainPositions?contentType={contentType}&" + $.param(params),)
-        .then((response) => {
-            // handle success
-            console.log("Number of trains: "+response.data.TrainPositions.length);
-            console.log(response.data.TrainPositions);
-
-            this.setState({
-                trains: response.data.TrainPositions
-            })
-
-        })
-        .catch(function (error) {
+                const response = await axios.get("https://api.wmata.com/TrainPositions/TrainPositions?contentType={contentType}&" + $.param(params),)
+                // handle success
+                //setting state to response objects
+                console.log(response.data.TrainPositions)
+                this.setState({ trains: response.data.TrainPositions })
+            }, 7000)
+        }
+        catch(error) {
             // handle error
             console.log(error);
-        })
-        .finally(function () {
-            // always executed
-        });
+        }
     }
-    
-  
+
   render() {
         return (
             <div>
                 <NavBar />
                 <div className="App">
-
-                        <div className='filterTab'>
-
-                        </div>
 
                         <div className='headerSec row'>
                             <span className="col">Train #</span>
@@ -112,10 +57,6 @@ class About extends Component {
 
                     <div className = "pageBody">
 
-                    
-
-                        
-
                         {this.state.trains.length ? (
                             <List>
                             {this.state.trains.map(train => (
@@ -128,7 +69,7 @@ class About extends Component {
                                     <span className="col">{train.LineCode}</span>
                                     <span className="col">{train.DestinationStationCode}</span>
                                     <span className="col">{train.ServiceType}</span>
-                                    <span className="col">{(train.SecondsAtLocation)/60}</span>
+                                    <span className="col">{train.SecondsAtLocation}</span>
 
                                 </div>
                                  </ListItem>
@@ -137,6 +78,10 @@ class About extends Component {
                         ) : (
                             <h3>No Results to Display</h3>
                         )}
+
+                        <div className='metroImg'>
+                            <img className='metroImgmap' src="https://wwwassets.rand.org/content/rand/about/locations/washington/metro/jcr:content/par/imagewithclass.aspectfit.0x0.png/x1485558831053.png.pagespeed.ic.6jWHmXTuti.png"></img>
+                        </div>
                     </div>
                 </div>
             </div>

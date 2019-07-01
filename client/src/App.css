@@ -1,7 +1,7 @@
 
 
 .pageBody {
-  background-color: rgb(219, 221, 231);
+  background-color: rgb(37, 37, 37);
   width: 80%;
   margin:auto;
   margin-bottom:30px;
@@ -34,10 +34,21 @@ body {
   padding-bottom: 10px;
   top: 0;
   width: 80%;
-  margin: 80px auto 0px auto;
+  margin: 18px auto 0px auto;
   z-index: 1;
   background-color: #8f939c;
   
+}
+
+.metroImg {
+  width: 100%;
+  height: auto;
+  margin: 10px auto 5px auto;
+
+}
+
+.metroImgmap{
+  width: 100%;
 }
 
 @media only screen and (max-width: 667px) {
